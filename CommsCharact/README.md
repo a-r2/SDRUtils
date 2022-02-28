@@ -2,7 +2,7 @@
 
 ## 1. Description
 
-This simple script is useful for characterizing the performance of a wired communication link (usually USB or Ethernet) from a SDR to a computer. It essentially measures the average latency, jitter and throughput of the SDR -> computer link for different (sample rate, buffer size) combinations (SDR -> computer measurements ONLY and NOT the other way around).
+This simple script is useful for characterizing the performance of a communication link from a SDR to a computer (usually USB or Ethernet). It essentially measures the average latency, jitter and throughput of the SDR -> computer link for different (sample rate, buffer size) combinations (SDR -> computer measurements ONLY and NOT the other way around).
 
 <p align="center">
   <img src="https://github.com/a-r2/SDRUtils/blob/main/CommsCharact/measurements.png"%/>
