@@ -53,7 +53,7 @@ cm                   = plt.get_cmap("hsv") #color map
 fig, (ax1, ax2, ax3) = plt.subplots(3, num="SDR COMM characterization") #figure
 # Plot 1
 ax1.set_prop_cycle("color", [cm(1.*i/BS_LEN) for i in range(BS_LEN)])
-ax1.plot(sample_rates, latency, marker="o")
+ax1.plot(sample_rates, latency, ".-")
 box1 = ax1.get_position()
 ax1.set_position([box1.x0, box1.y0, box1.width * 0.9, box1.height])
 ax1.set_ylabel("Latency [ms]")
@@ -62,7 +62,7 @@ ax1.set_xticks(sample_rates, labels=np.around(sample_rates * 1e-6, decimals=6))
 ax1.grid()
 # Plot 2
 ax2.set_prop_cycle("color", [cm(1.*i/BS_LEN) for i in range(BS_LEN)])
-ax2.plot(sample_rates, jitter, marker="o")
+ax2.plot(sample_rates, jitter, ".-")
 box2 = ax2.get_position()
 ax2.set_position([box2.x0, box2.y0, box2.width * 0.9, box2.height])
 ax2.set_ylabel("Jitter [ms]")
@@ -71,7 +71,7 @@ ax2.set_xticks(sample_rates, labels=np.around(sample_rates * 1e-6, decimals=6))
 ax2.grid()
 # Plot 3
 ax3.set_prop_cycle("color", [cm(1.*i/BS_LEN) for i in range(BS_LEN)])
-ax3.plot(sample_rates, throughput, marker="^")
+ax3.plot(sample_rates, throughput, ".-")
 ax3.plot(sample_rates, sample_rates * 1e-6, marker=".", color="black") #sample rate required for real-time processing
 box3 = ax3.get_position()
 ax3.set_position([box3.x0, box3.y0, box3.width * 0.9, box3.height])
