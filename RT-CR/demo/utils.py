@@ -1,4 +1,6 @@
 import numpy as np
+import numpy.matlib as matlib
+from scipy import signal
 
 def split_IQ(IQ):
     """
@@ -34,6 +36,17 @@ def sort_channels(channels, indexes):
     """
     return channels[indexes]
 
+def subwindows(x, win_len, overlap_len):
+    X_LEN = len(x)
+    assert win_len < X_LEN, "Windows length (" + str(win_len) + ") must be less than the input length(" + str(X_LEN) + ")"
+    assert overlap_len < win_len, "Overlap length (" + str(overlap_len) + ") must be less than the windows length(" + str(win_len) + ")"
+    x     = np.append(x, np.zeros(win_len - 1))
+    if overlap_len > 0:
+        y = np.lib.stride_tricks.sliding_window_view(x, window_shape=win_len)[::win_len - overlap_len]
+    else:
+        y = np.lib.stride_tricks.sliding_window_view(x, window_shape=win_len)[::win_len]
+    return y
+
 def array1D_part(array, size, index):
     """
     1-D array partition
@@ -52,7 +65,7 @@ def array1D_part(array, size, index):
     """
     N           = len(array) 
     n           = size
-    assert N > n, "Partition size (n) must be less or equal to the array size (N)"
+    assert n <= N, "Partition size (n) must be less than or equal to the array size (N)"
     i           = index
     first_index = i * n
     last_index  = (i + 1) * n

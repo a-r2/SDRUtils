@@ -8,11 +8,11 @@ CORR_ARR_EN = False #enable signal correlation from .mat file
 SENS_EN     = False #enable sensing
 TX_EN       = False #enable RF transmission
 
-PLOT_TYPE   = 2 #RX data plot type
+PLOT_TYPE   = "power spectrum" #RX data plot type
 SENS_TYPE   = None #sensing algorithm
 
-WIN_NUM     = 64 #number of FFT windows
-WIN_OVERLAP = 0.5 #FFT windows overlap %
+SWIN_LEN         = 64 #Subwindows length [samples]
+SWIN_OVERLAP_LEN = 16 #Subwindows overlap [samples]
 
 FFT_LEN     = 1024
 CORR_LEN    = 1024

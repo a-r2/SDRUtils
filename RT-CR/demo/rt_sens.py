@@ -1,11 +1,13 @@
 import numpy as np
 from scipy import signal
 
+from settings import *
+
 def sens_spectrum(rx2sens_out, plot2sens_out):
     while True: 
         sdr_data = rx2sens_out.recv()
         IQ_t_1, IQ_t_2, sample_rate, samples_num, channels, channels_num, _, _ = sdr_data
-        freqs, IQ_ps_1  = signal.welch(IQ_t_1, fs=sample_rate, window="hanning", nperseg=None, noverlap=None, nfft=samples_num, detrend="constant", return_onesided=False, scaling="spectrum", axis=-1, average="mean")
+        freqs, IQ_ps_1  = signal.welch(IQ_t_1, fs=sample_rate, window="hanning", nperseg=None, noverlap=SWIN_OVERLAP_LEN, nfft=FFT_LEN, detrend="constant", return_onesided=False, scaling="spectrum", axis=-1, average="mean")
         IQ_ps_1        = 10 * np.log10(IQ_ps_1 + 1e-16)
         freqs          = np.fft.fftshift(freqs)
         IQ_ps_1        = np.fft.fftshift(IQ_ps_1)
@@ -13,7 +15,7 @@ def sens_spectrum(rx2sens_out, plot2sens_out):
         min_ind, _ = signal.find_peaks(-IQ_ps_1, height=np.mean(-IQ_ps_1), threshold=None, distance=None, prominence=None, width=None, wlen=None, rel_height=None, plateau_size=None)
         maxmin_ind = np.append(max_ind, min_ind)
         maxmin_ind.sort()
-        noise_clas = np.ones(samples_num, dtype=bool)
+        noise_clas = np.ones(FFT_LEN, dtype=bool)
         cur_ind = 0
         for curmax_ind in max_ind:
             if cur_ind > curmax_ind:
