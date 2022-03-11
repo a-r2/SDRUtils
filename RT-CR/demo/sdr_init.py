@@ -16,8 +16,8 @@ sdr.gain_control_mode_chan1 = "fast_attack" #"manual", "slow_attack", "fast_atta
 sdr.tx_hardwaregain_chan0   = -89 #max = -89, max =0 
 sdr.tx_hardwaregain_chan1   = -89 #max = -89, max = 0
 
-sdr.rx_enabled_channels     = [1] #channel 1 = [0], channel 2 = [1], channel 1+2 = [0, 1]
-sdr.tx_enabled_channels     = [1] #channel 1 = [0], channel 2 = [1], channel 1+2 = [0, 1]
+sdr.rx_enabled_channels     = [0, 1] #channel 1 = [0], channel 2 = [1], channel 1+2 = [0, 1]
+sdr.tx_enabled_channels     = [0, 1] #channel 1 = [0], channel 2 = [1], channel 1+2 = [0, 1]
 
 sdr.rx_hardwaregain_chan0   = 0 #min = -1, max = 73, N/A unless gain_control_mode_chan0 = "manual"
 sdr.rx_hardwaregain_chan1   = 0 #min = -1, max = 73, N/A unless gain_control_mode_chan1 = "manual"

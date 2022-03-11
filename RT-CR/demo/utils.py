@@ -32,11 +32,28 @@ def sort_channels(channels, indexes):
         channels: IQ data channels (N-D numpy.ndarray)
         indexes: channels sort (1-D numpy.ndarray)
 
-    Returns sorted channels
+    Returns:
+
+        channels: sorted channels (N-D numpy.ndarray)
     """
     return channels[indexes]
 
 def subwindows(x, win_len, overlap_len):
+    """
+    Subwindows
+
+    Distribute input among overlapped subwindows
+
+    Args:
+
+        x: input array (1-D numpy.ndarray)
+        win_len: subwindows length (int)
+        overlap_len: subwindows overlap length (int)
+
+    Returns:
+
+        y: output N-D array (N-D numpy.ndarray)
+    """
     X_LEN = len(x)
     assert win_len < X_LEN, "Windows length (" + str(win_len) + ") must be less than the input length(" + str(X_LEN) + ")"
     assert overlap_len < win_len, "Overlap length (" + str(overlap_len) + ") must be less than the windows length(" + str(win_len) + ")"

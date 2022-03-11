@@ -12,9 +12,9 @@ if IQ_ARR_EN:
 else:
     IQ_ARR = None
 
-""" CORRELATION ARRAY .MAT FILE """
-if CORR_ARR_EN:
-    CORR_ARR = sio.loadmat(CORR_ARR_PATH) #load .mat
-    CORR_ARR = CORR_ARR["a"].flatten()
+""" ARRAY .MAT FILE FOR COMPARISON """
+if COMP_ARR_EN:
+    COMP_ARR = sio.loadmat(COMP_ARR_PATH) #load .mat
+    COMP_ARR = COMP_ARR["a"].flatten()
 else:
-    CORR_ARR = None
+    COMP_ARR = None
