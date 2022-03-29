@@ -2,16 +2,15 @@ import numpy as np
 
 from settings import *
 
-def receive_data(sdr, rx2plot_in, rx2sens_in):
-    if SENS_EN:
-        while True:
-            sdr_data = get_sdr_data(sdr)
+def receive_data(sdr, rx2plot_in, rx2sens_in, rx2demod_in):
+    while True:
+        sdr_data = get_sdr_data(sdr)
+        if PLOT_EN:
             rx2plot_in.send(sdr_data)
+        if SENS_EN:
             rx2sens_in.send(sdr_data)
-    else:
-        while True:
-            sdr_data = get_sdr_data(sdr)
-            rx2plot_in.send(sdr_data)
+        if DEMOD_EN:
+            rx2demod_in.send(sdr_data)
 
 def get_sdr_data(sdr):
     """

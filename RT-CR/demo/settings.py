@@ -5,18 +5,26 @@ COMP_ARR_PATH = "../signalExample.mat" #path to .mat file containing signal IQ d
 
 IQ_ARR_EN   = False #enable RX IQ from .mat file
 COMP_ARR_EN = False #enable signal for comparison from .mat file
-SENS_EN     = False #enable sensing
-TX_EN       = False #enable RF transmission
 
-PLOT_TYPE = "coherence" #RX data plot type
-SENS_TYPE = None #sensing algorithm
+PLOT_EN  = True #enable plotting
+SENS_EN  = False #enable sensing
+TX_EN    = False #enable RF transmission
+DEMOD_EN = False #enable demodulation
 
-SWIN_LEN         = 64 #Subwindows length [samples]
-SWIN_OVERLAP_LEN = 16 #Subwindows overlap [samples]
+PLOT_TYPE  = "time" #RX data plot type
+SENS_TYPE  = None #sensing algorithm
+DEMOD_TYPE = "FM"
 
-FFT_LEN  = 1024
-COMP_LEN = 1024
+SWIN_LEN         = 256 #subwindows length [samples]
+SWIN_OVERLAP_LEN = 64 #subwindows overlap [samples]
 
-SP_CHUNKS = 4
+FFT_LEN  = 4096 #FFT length
+COMP_LEN = 1024 #output comparison length
+
+SP_CHUNKS_NUM = 4 #number of chunks shown in spectrogram
 
 TX_SLEEP = 2 #TX ON/OFF switching time [s]
+
+DEMOD_PATH   = "./demod_signal.wav" #path to .wav file containing demodulated signal
+DEMOD_FS     = 48000 #sampling rate of demodulated signal [Hz]
+DEMOD_FILT_N = 8 #order of low-pass filter used in FM demodulation

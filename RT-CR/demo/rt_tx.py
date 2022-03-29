@@ -1,5 +1,7 @@
 import numpy as np
 
+from constants import *
+
 def transmit_data(sdr, tx_flag):
     """
     Transmit data
@@ -11,10 +13,11 @@ def transmit_data(sdr, tx_flag):
         sdr: AD9361 object (class)
         tx_flag: TX activation and deactivation (multiprocessing.Event)
     """
-    N  = sdr.rx_buffer_size
-    fs = sdr.sample_rate
-    ts = 1 / fs
-    f  = 500e3
+    N       = sdr.rx_buffer_size
+    fs      = sdr.sample_rate
+    ts      = 1 / fs
+    f       = 500e3
+    TX_NULL = np.zeros(N)
     try:
         i = 0 #tx iteration
         while True:
@@ -27,8 +30,6 @@ def transmit_data(sdr, tx_flag):
                 IQ *= ADC_SCALE
                 sdr.tx(IQ)
                 if not tx_flag.is_set():
-                    sdr.tx_destroy_buffer()
-    except KeyboardInterrupt:
+                    sdr.tx(TX_NULL)
+    except ValueError:
         sdr.tx_destroy_buffer()
-        exit()
-
